@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Misi Tanggap Bencana Aceh & Sumatra - HSI Berbagi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+      :root {
+        --hsib-navy: #003366;
+        --hsib-orange: #f57004;
+      }
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        scroll-behavior: smooth;
+      }
+      .serif {
+        font-family: "Playfair Display", serif;
+      }
+      .bg-navy {
+        background-color: var(--hsib-navy);
+      }
+      .text-navy {
+        color: var(--hsib-navy);
+      }
+      .bg-orange-hsib {
+        background-color: var(--hsib-orange);
+      }
+      .text-orange-hsib {
+        color: var(--hsib-orange);
+      }
+      .glass {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+      }
+
+      .hero-overlay {
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 20, 40, 0.7),
+          rgba(0, 30, 60, 0.95)
+        );
+      }
+
+      /* Animasi Reveal yang lebih halus */
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Efek Foto Dokumentasi */
+      .doc-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 2rem;
+      }
+      .doc-card img {
+        transition: transform 0.7s ease;
+      }
+      .doc-card:hover img {
+        transform: scale(1.08);
+      }
+      .doc-overlay {
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+        opacity: 0;
+        transition: opacity 0.5s ease;
+      }
+      .doc-card:hover .doc-overlay {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body class="bg-slate-50 text-slate-900 overflow-x-hidden">
+    <nav class="fixed w-full z-[100] glass border-b border-gray-100">
+      <div
+        class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <div class="flex items-center space-x-3">
+          <img
+            src="img/logo HSIB.png"
+            alt="Logo HSIB"
+            class="h-10 md:h-14 transition-transform hover:scale-105"
+          />
+          <div class="border-l pl-3 border-gray-200 hidden sm:block">
+            <h1
+              class="font-extrabold text-navy leading-none tracking-tighter text-xl uppercase"
+            >
+              HSI BERBAGI
+            </h1>
+            <p
+              class="text-[9px] text-gray-500 uppercase tracking-[0.2em] mt-1 font-bold"
+            >
+              Tanggap Bencana
+            </p>
+          </div>
+        </div>
+        <a
+          href="#donasi"
+          class="bg-orange-hsib text-white px-8 py-3 rounded-full font-bold shadow-xl shadow-orange-500/20 hover:bg-orange-600 transition-all active:scale-95 text-sm"
+        >
+          Bantu Sekarang
+        </a>
+      </div>
+    </nav>
+
+    <section
+      class="relative min-h-screen flex items-center pt-20 overflow-hidden"
+    >
+      <div class="absolute inset-0 z-0">
+        <img
+          src="https://images.unsplash.com/photo-1544383835-bda2bc66a55d?q=80&w=2000"
+          class="w-full h-full object-cover scale-105"
+          alt="Background"
+        />
+        <div class="absolute inset-0 hero-overlay"></div>
+      </div>
+      <div class="relative z-10 max-w-7xl mx-auto px-6 py-20 text-white">
+        <div class="max-w-4xl" id="hero-content">
+          <div class="flex items-center space-x-3 mb-8 reveal">
+            <span class="w-16 h-[2px] bg-orange-hsib"></span>
+            <span
+              class="text-orange-400 font-bold uppercase tracking-[0.4em] text-xs md:text-sm"
+              >Laporan Bencana: 22 Desember 2025</span
+            >
+          </div>
+          <h2
+            class="text-5xl md:text-8xl font-extrabold leading-[1] mb-8 uppercase tracking-tighter reveal"
+          >
+            Misi <span class="text-orange-hsib">Sumatra</span> <br />
+            Belum
+            <span class="italic serif font-normal text-white/90">Usai.</span>
+          </h2>
+          <p
+            class="text-xl md:text-3xl text-gray-300 mb-12 leading-relaxed font-light reveal"
+          >
+            Tiga minggu berlalu, namun luka belum mengering. Di saat kita
+            kembali beraktivitas, <strong>537.000 saudara kita</strong> di Aceh
+            & Sumatra masih meringkuk di pengungsian.
+          </p>
+          <div class="flex flex-wrap gap-6 reveal">
+            <a
+              href="#cerita"
+              class="bg-white text-navy px-12 py-5 rounded-2xl font-bold text-lg hover:bg-gray-100 transition-all shadow-2xl"
+              >Lihat Kondisi Terkini</a
+            >
+            <a
+              href="#donasi"
+              class="border border-white/30 backdrop-blur-md px-12 py-5 rounded-2xl font-bold text-lg hover:bg-white/10 transition-all"
+              >Donasi Cepat</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="bg-navy border-y border-white/10 py-6 overflow-hidden relative z-20 shadow-2xl"
+    >
+      <div class="flex whitespace-nowrap animate-pulse">
+        <div class="flex items-center space-x-12 px-12">
+          <span
+            class="text-white font-bold text-sm uppercase tracking-widest flex items-center"
+            ><span class="w-2 h-2 bg-red-500 rounded-full mr-3"></span> Status:
+            Pemulihan Gelombang II</span
+          >
+          <span
+            class="text-white font-bold text-sm uppercase tracking-widest flex items-center"
+            ><span class="w-2 h-2 bg-red-500 rounded-full mr-3"></span> Ribuan
+            Jiwa Meninggal Dunia</span
+          >
+          <span
+            class="text-white font-bold text-sm uppercase tracking-widest flex items-center"
+            ><span class="w-2 h-2 bg-red-500 rounded-full mr-3"></span> Aceh
+            Terisolasi Total</span
+          >
+          <span
+            class="text-white font-bold text-sm uppercase tracking-widest flex items-center"
+            ><span class="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
+            Kebutuhan Logistik Mendesak</span
+          >
+        </div>
+      </div>
+    </section>
+
+    <section id="cerita" class="py-24 bg-white relative">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center max-w-3xl mx-auto mb-20 reveal">
+          <h3
+            class="text-orange-hsib text-sm font-black tracking-[0.5em] uppercase mb-4 italic"
+          >
+            Skala Dampak Bencana
+          </h3>
+          <h2
+            class="text-4xl md:text-6xl font-extrabold text-navy italic serif leading-tight"
+          >
+            Duka yang Tak Terlukiskan
+          </h2>
+          <p class="text-gray-500 mt-6 text-lg">
+            Bukan sekadar angka, ini adalah nyawa dan harapan yang sedang
+            berjuang melawan keterbatasan.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div
+            class="p-12 bg-slate-50 rounded-[3rem] border-b-8 border-navy reveal group"
+          >
+            <div
+              class="text-6xl font-black text-navy mb-4 counter"
+              data-target="1068"
+            >
+              0
+            </div>
+            <p
+              class="font-bold text-gray-400 uppercase tracking-widest text-xs"
+            >
+              Jiwa Meninggal Dunia
+            </p>
+            <p
+              class="mt-6 text-sm text-gray-500 leading-relaxed italic border-t pt-6"
+            >
+              "Hingga 19 Desember 2025, angka kematian terus diverifikasi di
+              tengah reruntuhan."
+            </p>
+          </div>
+          <div
+            class="p-12 bg-slate-50 rounded-[3rem] border-b-8 border-orange-hsib reveal group"
+          >
+            <div
+              class="text-6xl font-black text-navy mb-4 counter"
+              data-target="537000"
+            >
+              0
+            </div>
+            <p
+              class="font-bold text-gray-400 uppercase tracking-widest text-xs"
+            >
+              Warga Mengungsi
+            </p>
+            <p
+              class="mt-6 text-sm text-gray-500 leading-relaxed italic border-t pt-6"
+            >
+              "Kehilangan rumah dan harta benda, kini bergantung sepenuhnya pada
+              dapur umum."
+            </p>
+          </div>
+          <div
+            class="p-12 bg-navy rounded-[3rem] text-white reveal shadow-2xl shadow-navy/20"
+          >
+            <h4 class="text-3xl font-black uppercase leading-none mb-4">
+              Aceh <br /><span class="text-orange-hsib">Lumpuh</span>
+            </h4>
+            <p class="text-sm text-gray-400 mb-8 font-light">
+              Wilayah terdampak paling parah. Hampir seluruh kabupaten merasakan
+              dampaknya.
+            </p>
+            <div class="space-y-3">
+              <div
+                class="flex justify-between text-xs font-bold uppercase tracking-widest"
+              >
+                <span>Jalan Terputus</span>
+                <span class="text-orange-hsib">95%</span>
+              </div>
+              <div class="h-1 bg-white/10 rounded-full overflow-hidden">
+                <div class="h-full bg-orange-hsib w-[95%]"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-24 bg-slate-50 overflow-hidden">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="grid lg:grid-cols-2 gap-20 items-center mb-24">
+          <div class="reveal">
+            <h2
+              class="text-4xl md:text-5xl font-extrabold text-navy mb-8 leading-tight"
+            >
+              Mengapa Mereka Masih
+              <span class="text-orange-hsib italic serif font-normal"
+                >Sangat Berharap</span
+              >
+              pada Kita?
+            </h2>
+            <div class="space-y-6 text-gray-600 text-lg leading-relaxed">
+              <p>
+                Bayangkan terbangun di tengah malam dengan gemuruh air yang
+                menghancurkan dinding rumah. Tiga pekan berlalu, namun bagi
+                warga <strong>Aceh, Sumatra Utara, dan Sumatra Barat</strong>,
+                waktu seolah berhenti.
+              </p>
+              <p>
+                Di wilayah-wilayah terdampak, aktivitas ekonomi lumpuh total.
+                Pasar tidak beroperasi, sawah terendam lumpur, dan jembatan yang
+                menjadi nadi ekonomi hancur berkeping-keping.
+              </p>
+              <p
+                class="font-bold italic text-navy bg-white p-6 rounded-2xl shadow-sm border-l-8 border-orange-hsib"
+              >
+                "Pemerintah mengestimasi pemulihan memakan waktu 2-3 bulan ke
+                depan. Tanpa bantuan logistik harian, mereka tak tahu harus
+                makan apa esok hari."
+              </p>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-4 reveal">
+            <div class="doc-card h-80 shadow-2xl">
+              <img src="img/aceh-1.jpeg" class="w-full h-full object-cover" />
+            </div>
+            <div class="doc-card h-96 -mt-12 shadow-2xl">
+              <img src="img/aceh-6.jpeg" class="w-full h-full object-cover" />
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 reveal">
+          <div class="group cursor-pointer">
+            <div class="doc-card h-[450px] mb-6">
+              <img src="img/aceh-3.jpeg" class="w-full h-full object-cover" />
+              <div
+                class="doc-overlay absolute inset-0 flex flex-col justify-end p-8 text-white"
+              >
+                <h4 class="font-bold text-xl mb-2 italic serif">
+                  Pengungsian Dingin
+                </h4>
+                <p class="text-xs text-gray-300 leading-relaxed">
+                  hilangnya tempat untuk mengungsikan diri yang layak, bermalam
+                  dengan berselimut dengan angin malam yang dingin.
+                </p>
+              </div>
+            </div>
+            <h5 class="font-bold text-navy uppercase tracking-widest text-sm">
+              Tempat Pengungsian
+            </h5>
+          </div>
+          <div class="group cursor-pointer">
+            <div class="doc-card h-[450px] mb-6 md:mt-12">
+              <img src="img/aceh-2.jpeg" class="w-full h-full object-cover" />
+              <div
+                class="doc-overlay absolute inset-0 flex flex-col justify-end p-8 text-white"
+              >
+                <h4 class="font-bold text-xl mb-2 italic serif">
+                  Akses Terputus
+                </h4>
+                <p class="text-xs text-gray-300 leading-relaxed">
+                  Jalan utama di pedalaman Aceh amblas, tumpukan gelondongan
+                  kayu menghambat akses.
+                </p>
+              </div>
+            </div>
+            <h5 class="font-bold text-navy uppercase tracking-widest text-sm">
+              Distribusi Terhambat
+            </h5>
+          </div>
+          <div class="group cursor-pointer">
+            <div class="doc-card h-[450px] mb-6">
+              <img src="img/aceh-5.jpeg" class="w-full h-full object-cover" />
+              <div
+                class="doc-overlay absolute inset-0 flex flex-col justify-end p-8 text-white"
+              >
+                <h4 class="font-bold text-xl mb-2 italic serif">
+                  Kebutuhan Pangan
+                </h4>
+                <p class="text-xs text-gray-300 leading-relaxed">
+                  kekurangan bahan pangan yang semakin bertambah, menyebabkan
+                  bantuan logistik mendesak.
+                </p>
+              </div>
+            </div>
+            <h5 class="font-bold text-navy uppercase tracking-widest text-sm">
+              Logistik Mendesak
+            </h5>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-32 bg-navy relative overflow-hidden">
+      <div
+        class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"
+      ></div>
+      <div class="max-w-5xl mx-auto px-6 text-center relative z-10 reveal">
+        <svg
+          class="w-16 h-16 text-orange-hsib mx-auto mb-10 opacity-50"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+        >
+          <path
+            d="M9 4.804A7.993 7.993 0 0110 4.5a7.993 7.993 0 011 0.304V15.2a7.993 7.993 0 00-1-.304 7.993 7.993 0 00-1 .304V4.804z"
+          ></path>
+        </svg>
+        <h2
+          class="text-2xl md:text-5xl font-bold leading-tight italic serif text-white px-4 md:px-0"
+        >
+          “Barangsiapa yang membantu seorang muslim (dalam) suatu kesusahan di
+          dunia maka Allah akan menolongnya dalam kesusahan pada hari kiamat,
+          dan barangsiapa yang meringankan (beban) seorang muslim yang sedang
+          kesulitan maka Allah akan meringankan (bebannya) di dunia dan akhirat”
+        </h2>
+        <p
+          class="text-orange-hsib font-bold tracking-[0.4em] uppercase text-sm mt-12"
+        >
+          — Hadits Riwayat Muslim (no. 2699)
+        </p>
+        <div
+          class="mt-16 text-gray-400 text-lg max-w-2xl mx-auto font-light italic leading-relaxed"
+        >
+          Setiap uluran tangan adalah harapan bagi mereka yang masih bertahan di
+          pengungsian. Semakin banyak bantuan yang terkumpul, semakin besar
+          peluang untuk mempercepat pemulihan.
+        </div>
+      </div>
+    </section>
+
+    <section id="donasi" class="py-32 bg-white relative">
+      <div class="max-w-7xl mx-auto px-6">
+        <div
+          class="bg-navy rounded-[4rem] overflow-hidden shadow-2xl flex flex-col lg:flex-row border border-white/5"
+        >
+          <div
+            class="lg:w-1/2 p-12 md:p-20 text-white flex flex-col justify-center"
+          >
+            <h3
+              class="text-4xl md:text-5xl font-black mb-8 leading-tight uppercase"
+            >
+              Salurkan Bantuan Terbaik Anda
+            </h3>
+            <p class="text-gray-400 text-lg mb-12 leading-relaxed">
+              Mari ambil bagian dalam misi kemanusiaan ini bersama LAZNAS HSI
+              BERBAGI. Kami berkomitmen menyalurkan amanah Anda secara
+              transparan dan tepat sasaran.
+            </p>
+
+            <div class="space-y-8">
+              <div class="flex items-start space-x-6">
+                <div
+                  class="bg-orange-hsib p-4 rounded-2xl shadow-lg shadow-orange-500/20"
+                >
+                  <svg
+                    class="w-6 h-6 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="font-bold text-xl">Langkah Transfer</h4>
+                  <p class="text-gray-400 text-sm italic">
+                    Transfer via BSI ke rekening resmi HSI Berbagi.
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-start space-x-6">
+                <div
+                  class="bg-orange-hsib p-4 rounded-2xl shadow-lg shadow-orange-500/20"
+                >
+                  <svg
+                    class="w-6 h-6 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
+                    ></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="font-bold text-xl italic">Wajib Kode Unik 200</h4>
+                  <p class="text-gray-400 text-sm">
+                    Gunakan angka 200 di akhir nominal (Contoh: Rp 1.000.200).
+                  </p>
+                </div>
+              </div>
+              <div
+                class="bg-white/5 p-6 rounded-3xl border border-white/10 mt-10"
+              >
+                <p
+                  class="text-xs text-orange-400 font-bold mb-2 uppercase tracking-widest"
+                >
+                  Peringatan Penting:
+                </p>
+                <p class="text-xs text-gray-300 leading-relaxed italic">
+                  Donasi tanpa kode unik atau tanpa konfirmasi akan dicatat
+                  sebagai
+                  <strong>Dana Umum Berbagi Kebaikan HSI BERBAGI</strong>.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="lg:w-1/2 bg-white p-12 md:p-20 text-center flex flex-col justify-center items-center"
+          >
+            <img src="img/bsi logo.png" class="h-12 mb-10" alt="BSI Logo" />
+            <p
+              class="text-gray-400 font-bold text-sm tracking-[0.3em] uppercase mb-4"
+            >
+              Nomor Rekening Resmi
+            </p>
+            <div
+              class="relative group cursor-pointer mb-2"
+              onclick="copyToClipboard('8550000057')"
+            >
+              <h2
+                id="norek"
+                class="text-5xl md:text-6xl font-black text-navy tracking-tighter mb-2 transition-transform hover:scale-105"
+              >
+                855 000 0057
+              </h2>
+              <p
+                class="text-[10px] font-bold text-navy opacity-40 uppercase tracking-widest"
+              >
+                Klik untuk menyalin nomor rekening
+              </p>
+            </div>
+            <p
+              class="text-2xl font-bold text-slate-800 mb-12 uppercase tracking-tight italic serif"
+            >
+              a.n HSI BERBAGI
+            </p>
+
+            <div
+              class="bg-orange-50 p-10 rounded-[3rem] border-2 border-dashed border-orange-200 w-full max-w-sm"
+            >
+              <p
+                class="text-orange-800 font-bold mb-2 uppercase tracking-widest text-xs"
+              >
+                Wajib Kode Unik
+              </p>
+              <p class="text-5xl font-black text-orange-hsib">200</p>
+              <p class="text-xs text-orange-700/60 mt-4 italic">
+                Memudahkan verifikasi & penyaluran cepat.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="bg-slate-50 py-20 border-t border-gray-100">
+      <div class="max-w-7xl mx-auto px-6 text-center">
+        <img src="img/logo HSIB.png" alt="Logo" class="h-16 mx-auto mb-6" />
+        <h4
+          class="text-2xl font-black text-navy uppercase tracking-tighter mb-4"
+        >
+          LAZNAS HSI BERBAGI
+        </h4>
+        <p
+          class="text-gray-500 max-w-2xl mx-auto leading-relaxed mb-12 font-light"
+        >
+          Lembaga Amil Zakat Nasional yang berdedikasi dalam misi kemanusiaan
+          dengan transparansi penuh untuk membantu meringankan beban umat.
+        </p>
+        <div class="w-12 h-1 bg-orange-hsib mx-auto mb-12"></div>
+        <p class="text-gray-400 text-xs font-bold uppercase tracking-[0.3em]">
+          © 2025 HSI BERBAGI – TANGGAP BENCANA SUMATRA
+        </p>
+        <p class="text-gray-300 text-[10px] mt-2 italic">
+          Jazakumullahu Khairan Katsiran atas kepedulian Anda.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      function copyToClipboard(text) {
+        navigator.clipboard.writeText(text);
+        alert("Nomor Rekening BSI HSI Berbagi berhasil disalin ke clipboard!");
+      }
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Animation Counter
+      document.querySelectorAll(".counter").forEach((counter) => {
+        const target = +counter.getAttribute("data-target");
+        gsap.to(counter, {
+          innerText: target,
+          duration: 3,
+          scrollTrigger: counter,
+          snap: { innerText: 1 },
+          ease: "expo.out",
+        });
+      });
+
+      // Reveal animations
+      document.querySelectorAll(".reveal").forEach((el) => {
+        ScrollTrigger.create({
+          trigger: el,
+          start: "top 92%",
+          onEnter: () => el.classList.add("active"),
+        });
+      });
+
+      // Hero content move
+      gsap.from("#hero-content", {
+        opacity: 0,
+        y: 60,
+        duration: 1.5,
+        ease: "power4.out",
+      });
+    </script>
+  </body>
+</html>
